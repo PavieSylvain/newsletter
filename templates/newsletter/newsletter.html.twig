@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue dans la création de newsletter {% endblock %}
+
+{% form_theme form_news 'bootstrap_5_layout.html.twig' %}
+
+{% block body %}
+
+<div class="w-75 m-auto">
+
+    {{ form_start(form_news) }}
+        {{ form_row(form_news.title) }}
+        {{ form_row(form_news.description) }}
+        <div class="m-auto w-50">
+            {{ form_row(form_news.planning_newsletter) }}
+            <label for="publishedAt">Date d'envoi de la newsletter
+            {{ form_row(form_news.publishedAt) }}
+        </div>
+
+        <div class="list bg-info">
+                {{ form_row(form_news.select, {'attr': {'class': 'form-check form-check-inline'}}) }}
+            <table id="contacts" class="display">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nom Prénom</th>
+                        <th>Adresse E-mail</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in form_news.send_list %}
+                        {% set id = item.vars['value'] %}
+                            <tr>
+                                <td>{{ form_widget(item) }}</td>
+                                <td>{{ item.vars.attr.name }}</td>
+                                <td>{{ item.vars.attr.email }}</td>
+                                <td>{{ item.vars.attr.status }}</td>
+                            </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        </div>
+
+        <div class="btn-group w-100">
+            <button type="submit" name="save" id="save" class="btn border border-dark bg-info text-white">Sauvegarder</button>
+            <button type="submit" name="save_and_send" id="save_and_send" value="save_and_send" class="btn border border-dark bg-info text-white">Sauvegarder et publier</button>
+        </div>
+    {{ form_end(form_news) }}
+
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags(app.request.attributes.get('_route')) }}
+{% endblock %}

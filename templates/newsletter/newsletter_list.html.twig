@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue dans la création de newsletter {% endblock %}
+
+
+{% block body %}
+    <div class="list bg-info">
+        <table id="newsletters" class="display">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Date de création</th>
+                    <th>Date de mise à jour</th>
+                    <th>Date de publication</th>
+                    <th>Auteur</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for o_newsletter in o_newsletters %}
+                    <tr>
+                        <td class="text-center">{{ o_newsletter.title }}</td>
+                        <td class="text-center">{{ o_newsletter.createdAt | date('Y-m-d H:i:s') }}</td>
+                        <td class="text-center">{{ o_newsletter.updatedAt | date('Y-m-d H:i:s') }}</td>
+                        {% if o_newsletter.publishedAt %}
+                            <td class="text-center">{{ o_newsletter.publishedAt | date('Y-m-d H:i:s') }}</td>
+                        {% else %}
+                            <td class="text-center">Non publié</td>
+                        {% endif %}
+                        
+                        <td class="text-center">{{ o_newsletter.author.firstName }} {{ o_newsletter.author.lastName }}</td>
+                        <td class="modifier">
+                            <a class="btn btn-outline-warning text-center" href="{{ path('bo_newsLetter_update', { 'id': o_newsletter.id }) }}" >Modifier</a>
+                            <a class="btn btn-outline-danger text-center" href="{{ path('bo_newsLetter_delete', {id: o_newsletter.id}) }}" onclick="return confirm('Etes-vous sure de supprimer la newsletter?')">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags(app.request.attributes.get('_route')) }}
+{% endblock %}

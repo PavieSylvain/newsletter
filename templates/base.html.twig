@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+            {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="/build/app.css">
+        {% endblock %}
+
+
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+
+
+        {% block js_notifications %}
+            {% set notifications = [] %}
+            {% for label, messages in app.flashes([constant('App\\Service\\BaseHelper::NOTIFICATION_BO_SUCCESS'), constant('App\\Service\\BaseHelper::NOTIFICATION_BO_ERROR')]) %}
+                {% for message in messages %}
+                    {% set notifications = notifications | merge([{'label': label, 'message': message}]) %}
+                {% endfor %}
+            {% endfor %}
+            <i id="js-notifications" data-notifications="{{ notifications | json_encode | e('html_attr') }}"></i>
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </body>
+        
+</html>

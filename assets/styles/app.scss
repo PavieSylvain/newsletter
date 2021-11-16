@@ -1,0 +1,32 @@
+@import "~bootstrap/scss/bootstrap";
+@import "./toastr.css";
+@import url("https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css");
+//@import "DataTables/media/css/smoothness/jquery-ui-1.8.21.custom.css";
+//@import "DataTables/media/css/jquery.dataTables_themeroller.css";
+
+body{
+    padding: 20px;
+}
+   
+.input-group{
+   padding: 20px 0;
+}
+   
+textarea.form-control{
+    height: 200px;
+}
+  
+.btn{
+    width: 40%;
+    margin: 0 5%;
+}
+   
+.list{
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid black;
+}
+
+#newsletters th, #newsletters td{
+    text-align: center;
+}

@@ -1,0 +1,19 @@
+fos_ck_editor:
+  configs:
+    ultrabasic:
+      toolbar: "base_toolbar"
+      height: "100px"
+      uiColor: "#ffffff"
+      language: fr
+      removePlugins: 'exportpdf'
+      filebrowserBrowseRoute: elfinder
+      filebrowserBrowseRouteParameters: []
+  toolbars:
+    configs:
+      base_toolbar: [ "@base" ]
+    items:
+      base: [ 'Bold', 'Italic', 'Underline', 'NumberedList', 'BulletedList', 'Strike', 'Image' ]
+      #style: [ 'Strike', 'Link', 'Unlink', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', 'Format', 'Styles', 'TextColor' ]
+      #iframe: [ 'Iframe' ]
+      #source: [ 'Source' ]
+      #image: [ 'Image' ]
